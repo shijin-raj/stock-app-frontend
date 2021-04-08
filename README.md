@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Stock Search App
+
+Search stock by company name
+
+Stack used:
+NodeJS
+ExpressJS
+ReactJS
+MySQL
+
+NodeJS-backend code available in repo - https://github.com/ShijinRaj0/stock-app-backend
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
