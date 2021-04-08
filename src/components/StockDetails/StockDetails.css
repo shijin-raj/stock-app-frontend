@@ -1,0 +1,16 @@
+.stock-details .stock-property {
+    padding: 10px;
+    text-align: left;
+    background-color: #0c4284;
+    margin-top: 5px;
+    max-width: 430px;
+    min-width: 430px;
+    color: white;
+}
+
+.stock-property span {
+    text-align: right;
+    float: right;
+    font-weight: bold;
+    margin-left: 30px;
+}
