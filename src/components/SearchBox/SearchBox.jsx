@@ -6,7 +6,7 @@ import {useState,useEffect} from 'react';
 import axios from 'axios'
 import StockDetails from '../StockDetails/StockDetails'
 
-const url='http://stock-search-project.herokuapp.com/';
+const url='https://stock-search-project.herokuapp.com/';
 
 
 const SearchBox= (props)=> {
