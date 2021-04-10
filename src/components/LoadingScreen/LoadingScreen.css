@@ -1,0 +1,19 @@
+.rotate {
+    width: 40px;
+    height: 40x;
+    animation: rotation 2s infinite linear;
+    color: #0C4284;
+}
+
+img {
+    margin: 20px;
+}
+
+@keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
