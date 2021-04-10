@@ -5,6 +5,7 @@ import './SearchBox.css';
 import {useState,useEffect} from 'react';
 import axios from 'axios'
 import StockDetails from '../StockDetails/StockDetails'
+import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
 const url='https://stock-search-project.herokuapp.com/';
 
@@ -14,14 +15,16 @@ const SearchBox= (props)=> {
     const [stockData,setStockData]=useState([]);
     const [stockList,setStockList]=useState([]);
     const [listLoaded,setListLoaded]=useState(false);
+    const [loading,setLoading]=useState(false);
   
     const searchStock=(searchString)=>{
+        setLoading(true);
         let query=`${url}search?name=${searchString}`;
         axios.get(query).then((response)=>{
             setStockData(response.data);
         }).catch((err)=>{
             console.error(err);
-        });
+        }).finally(()=>setLoading(false));
     }
 
 useEffect(() => {
@@ -45,16 +48,19 @@ const handleChange =(e,value)=>{
 }
 
 const displayStockData =()=>{
+    if(loading)
+    return <LoadingScreen />
     if(stockData[0]){
         return <StockDetails {...stockData[0]} />
     }
     else return <></>;
 }
-
-    if(listLoaded) {
+const displaySearch= ()=>{
+    if(!listLoaded) {
+        return <LoadingScreen />
+    }
     return (
-        <div className='search-box'>
-            <div className='form-title'>{props.title}</div>
+        <>
             <div className='input-section'>
 
             <div className='form-item'>
@@ -70,13 +76,18 @@ const displayStockData =()=>{
             </div>
  
             </div>
-        {displayStockData()}
+            {displayStockData()}
+            </>
+    )
+}
+    
+    return (
+        <div className='search-box'>
+            <div className='form-title'>{props.title}</div>
+        {displaySearch()}
         </div>
     )
-    }
-    else {
-        return (<></>)
-    }
+   
 }
 
 export default SearchBox;
