@@ -1,18 +1,17 @@
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import {TextField} from '@material-ui/core/';
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import './SearchBox.css';
-import {useState,useEffect} from 'react';
 import axios from 'axios'
 import StockDetails from '../StockDetails/StockDetails'
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
-const url='https://stock-search-project.herokuapp.com/';
+const url='http://localhost:3001/';
 
 
 const SearchBox= (props)=> {
     
-    const [stockData,setStockData]=useState([]);
+    const [stockData,setStockData]=useState({});
     const [stockList,setStockList]=useState([]);
     const [listLoaded,setListLoaded]=useState(false);
     const [loading,setLoading]=useState(false);
@@ -21,6 +20,7 @@ const SearchBox= (props)=> {
         setLoading(true);
         let query=`${url}search?name=${searchString}`;
         axios.get(query).then((response)=>{
+            console.log(response.data);
             setStockData(response.data);
         }).catch((err)=>{
             console.error(err);
@@ -48,10 +48,11 @@ const handleChange =(e,value)=>{
 }
 
 const displayStockData =()=>{
-    if(loading)
-    return <LoadingScreen />
-    if(stockData[0]){
-        return <StockDetails {...stockData[0]} />
+    if(loading){
+        return <LoadingScreen />
+    }
+    if(stockData.NAME){
+        return <StockDetails {...stockData} />
     }
     else return <></>;
 }
