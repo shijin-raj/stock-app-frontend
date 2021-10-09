@@ -6,7 +6,7 @@ import axios from 'axios'
 import StockDetails from '../StockDetails/StockDetails'
 import LoadingScreen from '../LoadingScreen/LoadingScreen';
 
-const url='http://localhost:3001/';
+const url='https://find-stock-api.herokuapp.com/';
 
 
 const SearchBox= (props)=> {
